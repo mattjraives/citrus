@@ -5,6 +5,7 @@ class Fruit:
     self.children = []
     self.family = []
     self.siblings = []
+    self.node = None ## Link to node object in graph
   def find_children(self,basket): # basket is a list of Fruit objects
     for fruit in basket:
       if fruit.name is not self.name:
@@ -14,4 +15,7 @@ class Fruit:
   def find_siblings(self,basket):
     for fruit in basket:
       if fruit.name is not self.name:
-        if fruit.
+        if set(fruit.parents).is_disjoint(set(self.parents)):
+          continue
+        else:
+          self.siblings.append(fruit)
